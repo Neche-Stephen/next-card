@@ -39,7 +39,8 @@
 
     <section aria-labelledby="accommodation-options">
       <h2 id="accommodation-options" class="sr-only">Available Accommodations</h2>
-      <div class="embla">
+      <div class="embla relative">
+        <button id="prevButton" data-lucide="chevron-left" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-[hsl(var(--primary))] text-white p-2 rounded-full shadow-md"></button>
         <div class="embla__viewport">
           <div class="embla__container">
             <div class="embla__slide p-1">
@@ -161,6 +162,7 @@
             </div>
           </div>
         </div>
+        <button id="nextButton" data-lucide="chevron-right" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-[hsl(var(--primary))] text-white p-2 rounded-full shadow-md"></button>
       </div>
     </section>
 
@@ -174,6 +176,10 @@
     const emblaNode = document.querySelector('.embla');
     const viewport = emblaNode.querySelector('.embla__viewport');
     const embla = EmblaCarousel(viewport, { loop: true });
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
+    prevButton.addEventListener('click', () => embla.scrollPrev());
+    nextButton.addEventListener('click', () => embla.scrollNext());
     setInterval(() => {
       if (embla.canScrollNext()) {
         embla.scrollNext();
